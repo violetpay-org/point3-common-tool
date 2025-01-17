@@ -1,0 +1,19 @@
+{
+  "name": "point3-common-tool",
+  "version": "1.0.0",
+  "description": "포인트3 공유 코드베이스",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/violetpay-org/point3-common-tool.git"
+  },
+  "author": "포인트3 개발팀",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/violetpay-org/point3-common-tool/issues"
+  },
+  "homepage": "https://github.com/violetpay-org/point3-common-tool#readme"
+}
