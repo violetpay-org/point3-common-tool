@@ -17,4 +17,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./callbackURL"), exports);
 __exportStar(require("./guid"), exports);
 __exportStar(require("./money"), exports);
+__exportStar(require("./phoneNumber"), exports);
 //# sourceMappingURL=index.js.map
