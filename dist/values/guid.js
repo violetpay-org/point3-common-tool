@@ -29,6 +29,9 @@ class Guid {
         }
         return new Guid(prefix, hash);
     }
+    get Prefix() {
+        return this.prefix;
+    }
     equals(other) {
         return ((this.prefix + '-' + this.uuid) === other.toString());
     }

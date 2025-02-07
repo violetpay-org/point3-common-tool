@@ -5,5 +5,6 @@ export declare class Guid {
     toString(): string;
     static parse(guid: string): Guid;
     static create(prefix: string): Guid;
+    get Prefix(): string;
     equals(other: Guid): boolean;
 }

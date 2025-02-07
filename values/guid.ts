@@ -1,4 +1,4 @@
-import {v7 as uuidv7} from 'uuid';
+import { v7 as uuidv7 } from 'uuid';
 
 /** @internal */
 export class Guid {
@@ -44,6 +44,10 @@ export class Guid {
         }
 
         return new Guid(prefix, hash);
+    }
+
+    public get Prefix(): string {
+        return this.prefix
     }
 
     /** @internal */
