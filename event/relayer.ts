@@ -10,7 +10,7 @@ import { ModuleRef } from "@nestjs/core";
 
 const RELAY_MAP = new Map<Symbol, EventRepository<BaseEvent<Guid, Payload>>>();
 
-class From {
+export class From {
     constructor(
         private readonly repository: EventRepository<BaseEvent<Guid, Payload>>,
         private readonly type: EventStorage,
