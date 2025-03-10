@@ -33,8 +33,9 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.p3Testing = exports.p3Values = exports.p3Loggers = void 0;
+exports.p3Event = exports.p3Testing = exports.p3Values = exports.p3Loggers = void 0;
 exports.p3Loggers = __importStar(require("./logger"));
 exports.p3Values = __importStar(require("./values"));
 exports.p3Testing = __importStar(require("./testing"));
+exports.p3Event = __importStar(require("./event"));
 //# sourceMappingURL=index.js.map
