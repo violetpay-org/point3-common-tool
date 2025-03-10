@@ -3,7 +3,7 @@ import { BaseEvent, Payload } from "./event";
 import { Guid } from "../values";
 import { Logger } from "@nestjs/common";
 import { ModuleRef } from "@nestjs/core";
-declare class From {
+export declare class From {
     private readonly repository;
     private readonly type;
     constructor(repository: EventRepository<BaseEvent<Guid, Payload>>, type: EventStorage);
@@ -30,4 +30,3 @@ export declare abstract class BaseEventRelayer {
     private commitCompleted;
     private trySilently;
 }
-export {};

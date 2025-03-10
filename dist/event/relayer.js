@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseEventRelayer = exports.EventRelayerToken = exports.EventRelayableApplication = void 0;
+exports.BaseEventRelayer = exports.EventRelayerToken = exports.EventRelayableApplication = exports.From = void 0;
 exports.RegisterableEventRepository = RegisterableEventRepository;
 const storage_1 = require("./storage");
 const common_1 = require("@nestjs/common");
@@ -30,6 +30,7 @@ class From {
         return this.type;
     }
 }
+exports.From = From;
 const REPOSITORY_REGISTRATIONS = new Map();
 class EventRelayableApplication {
     constructor(moduleRef) {
