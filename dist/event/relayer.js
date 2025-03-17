@@ -96,7 +96,7 @@ let BaseEventRelayer = class BaseEventRelayer {
             await this.commitCompleted(message, from);
         }
         catch (error) {
-            this.logger.warn(`메시지 ${message.Id.toString()}를 ${to.toString()}로 커밋하는데 실패했습니다: ${error}`);
+            this.logger.warn(`메시지 ${message.Id.toString()}를 ${to.description}로 커밋하는데 실패했습니다: ${error}`);
             await this.commitToDeadletter(message, from);
         }
     }
