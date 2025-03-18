@@ -15,6 +15,7 @@ export declare class EventRelayableApplication {
     isRegistered: boolean;
     constructor(moduleRef: ModuleRef);
     registerEvents(): void;
+    private trySilently;
 }
 export declare function RegisterableEventRepository(topic: symbol, repositoryToken: symbol): ParameterDecorator;
 export declare const EventRelayerToken: unique symbol;

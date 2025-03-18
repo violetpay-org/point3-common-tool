@@ -39,12 +39,18 @@ class EventRelayableApplication {
     }
     registerEvents() {
         REPOSITORY_REGISTRATIONS.forEach((topic, repositoryToken) => {
-            const repository = this.moduleRef.get(repositoryToken);
-            if (!repository)
-                return;
-            RELAY_MAP.set(topic, repository);
+            this.trySilently(() => {
+                const repository = this.moduleRef.get(repositoryToken);
+                RELAY_MAP.set(topic, repository);
+            });
         });
         this.isRegistered = true;
+    }
+    trySilently(fn) {
+        try {
+            fn();
+        }
+        catch (e) { }
     }
 }
 exports.EventRelayableApplication = EventRelayableApplication;
