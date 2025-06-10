@@ -18,4 +18,7 @@ __exportStar(require("./callbackURL"), exports);
 __exportStar(require("./guid"), exports);
 __exportStar(require("./money"), exports);
 __exportStar(require("./phoneNumber"), exports);
+__exportStar(require("./email"), exports);
+__exportStar(require("./gulid"), exports);
+__exportStar(require("./name"), exports);
 //# sourceMappingURL=index.js.map
