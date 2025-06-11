@@ -31,7 +31,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
  * NestJS의 Injectable 데코레이터가 적용되어 의존성 주입이 가능합니다.
  */
 @Injectable()
-export abstract class RESTTemplate {
+export class RESTTemplate {
     /**
      * Axios 인스턴스 (내부적으로 사용)
      */

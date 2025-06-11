@@ -1,7 +1,7 @@
 import { LoggerService } from '@nestjs/common';
 import { HttpResponse } from './types';
 import { AxiosRequestConfig } from 'axios';
-export declare abstract class RESTTemplate {
+export declare class RESTTemplate {
     private logger;
     private readonly axiosInstance;
     constructor(logger: LoggerService, baseURL?: string, timeout?: number);
