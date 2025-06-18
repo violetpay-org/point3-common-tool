@@ -2,11 +2,11 @@ import { EventRepository, EventStorage } from "./storage";
 import { BaseEvent, Payload } from "./event";
 import { Guid } from "../values";
 
-// import { Producer } from "node-rdkafka";
 import { Inject, Logger } from "@nestjs/common";
 import { RelayerError } from "./errors";
-// import { KafkaProducerToken } from "src/infrastructure/kafka/kafka.config";
 import { ModuleRef } from "@nestjs/core";
+
+import { Mutex } from "async-mutex";
 
 const RELAY_MAP = new Map<Symbol, EventRepository<BaseEvent<Guid, Payload>>>();
 
@@ -103,26 +103,26 @@ export function RegisterableEventRepository(topic: symbol, repositoryToken: symb
 
 export const EventRelayerToken = Symbol.for("EventRelayer");
 export abstract class BaseEventRelayer {
+    private mutex: Mutex = new Mutex;
     constructor(
         @Inject(Logger)
         private readonly logger: Logger
     ) {}
 
     async execute(): Promise<void> {
-        for (const [key, eventRepository] of RELAY_MAP.entries()) {
-            const outbox = new From(eventRepository, EventStorage.OUTBOX);
-            const deadLetter = new From(eventRepository, EventStorage.DEAD_LETTER);
+        try {
+            await this.mutex.acquire();
+            for (const [key, eventRepository] of RELAY_MAP.entries()) {
+                const outbox = new From(eventRepository, EventStorage.OUTBOX);
+                const deadLetter = new From(eventRepository, EventStorage.DEAD_LETTER);
 
-            const outBoxEvents = await this.collectEvents(outbox);
-            const deadLetterEvents = await this.collectEvents(deadLetter);
+                const outBoxEvents = await this.collectEvents(outbox);
+                const deadLetterEvents = await this.collectEvents(deadLetter);
 
-            for await (const event of outBoxEvents) {
-                await this.relay(event, outbox, key);
+                await Promise.all(outBoxEvents.map(event => this.relay(event, outbox, key)));
+                await Promise.all(deadLetterEvents.map(event => this.relay(event, deadLetter, key)));
             }
-            for await (const event of deadLetterEvents) {
-                await this.relay(event, deadLetter, key);
-            }
-        }
+        } finally { this.mutex.release(); }
     }
 
     private async collectEvents(from: From): Promise<BaseEvent<Guid, Payload>[]> {
@@ -173,7 +173,7 @@ export abstract class BaseEventRelayer {
             default:
                 const _exhaustiveCheck: never = from.Type;
                 throw new Error(`알 수 없는 이벤트 저장소 타입입니다: ${_exhaustiveCheck}`);
-        }    
+        }
     }
 
     private async commitCompleted(message: BaseEvent<Guid, Payload>, from: From): Promise<void> {
