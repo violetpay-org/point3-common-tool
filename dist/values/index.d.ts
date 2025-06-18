@@ -5,3 +5,4 @@ export * from "./phoneNumber";
 export * from "./email";
 export * from "./gulid";
 export * from "./name";
+export * from "./roles";
