@@ -17,6 +17,7 @@ exports.RegisterableEventRepository = RegisterableEventRepository;
 const storage_1 = require("./storage");
 const common_1 = require("@nestjs/common");
 const errors_1 = require("./errors");
+const async_mutex_1 = require("async-mutex");
 const RELAY_MAP = new Map();
 class From {
     constructor(repository, type) {
@@ -68,19 +69,22 @@ exports.EventRelayerToken = Symbol.for("EventRelayer");
 let BaseEventRelayer = class BaseEventRelayer {
     constructor(logger) {
         this.logger = logger;
+        this.mutex = new async_mutex_1.Mutex;
     }
     async execute() {
-        for (const [key, eventRepository] of RELAY_MAP.entries()) {
-            const outbox = new From(eventRepository, storage_1.EventStorage.OUTBOX);
-            const deadLetter = new From(eventRepository, storage_1.EventStorage.DEAD_LETTER);
-            const outBoxEvents = await this.collectEvents(outbox);
-            const deadLetterEvents = await this.collectEvents(deadLetter);
-            for await (const event of outBoxEvents) {
-                await this.relay(event, outbox, key);
+        try {
+            await this.mutex.acquire();
+            for (const [key, eventRepository] of RELAY_MAP.entries()) {
+                const outbox = new From(eventRepository, storage_1.EventStorage.OUTBOX);
+                const deadLetter = new From(eventRepository, storage_1.EventStorage.DEAD_LETTER);
+                const outBoxEvents = await this.collectEvents(outbox);
+                const deadLetterEvents = await this.collectEvents(deadLetter);
+                await Promise.all(outBoxEvents.map(event => this.relay(event, outbox, key)));
+                await Promise.all(deadLetterEvents.map(event => this.relay(event, deadLetter, key)));
             }
-            for await (const event of deadLetterEvents) {
-                await this.relay(event, deadLetter, key);
-            }
+        }
+        finally {
+            this.mutex.release();
         }
     }
     async collectEvents(from) {

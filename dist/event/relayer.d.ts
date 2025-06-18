@@ -21,6 +21,7 @@ export declare function RegisterableEventRepository(topic: symbol, repositoryTok
 export declare const EventRelayerToken: unique symbol;
 export declare abstract class BaseEventRelayer {
     private readonly logger;
+    private mutex;
     constructor(logger: Logger);
     execute(): Promise<void>;
     private collectEvents;
