@@ -12,6 +12,7 @@ var ManagerRoleType;
     ManagerRoleType["POINT3_DEVELOPER"] = "p3-DEV-0";
     ManagerRoleType["POINT3_INFRA"] = "p3-INFRA-0";
     ManagerRoleType["POINT3_SECURITY"] = "p3-SECURITY-0";
+    ManagerRoleType["POINT3_OPERATOR"] = "p3-OPS-0";
 })(ManagerRoleType || (exports.ManagerRoleType = ManagerRoleType = {}));
 var Point3ManagerRoleType;
 (function (Point3ManagerRoleType) {
@@ -19,5 +20,6 @@ var Point3ManagerRoleType;
     Point3ManagerRoleType["POINT3_DEVELOPER"] = "p3-DEV-0";
     Point3ManagerRoleType["POINT3_INFRA"] = "p3-INFRA-0";
     Point3ManagerRoleType["POINT3_SECURITY"] = "p3-SECURITY-0";
+    Point3ManagerRoleType["POINT3_OPERATOR"] = "p3-OPS-0";
 })(Point3ManagerRoleType || (exports.Point3ManagerRoleType = Point3ManagerRoleType = {}));
 //# sourceMappingURL=roles.js.map
