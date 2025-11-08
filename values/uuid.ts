@@ -32,4 +32,14 @@ export class UUID {
 	 * @returns UUID 문자열
 	 */
 	toString(): string { return this.value };
+
+	/**
+	 * 두 UUID 인스턴스가 동일한 값을 가지는지 비교합니다.
+	 * 
+	 * @param other 비교할 다른 UUID 인스턴스
+	 * @returns 값이 같으면 true, 그렇지 않으면 false
+	 */
+	equals(other: UUID): boolean {
+		return this.value === other.value;
+	}
 }

@@ -14,6 +14,9 @@ class UUID {
     }
     toString() { return this.value; }
     ;
+    equals(other) {
+        return this.value === other.value;
+    }
 }
 exports.UUID = UUID;
 //# sourceMappingURL=uuid.js.map
