@@ -7,3 +7,4 @@ export * from "./gulid";
 export * from "./name";
 export * from "./roles";
 export * from "./checksum";
+export * from "./uuid";
