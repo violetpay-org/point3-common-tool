@@ -60,7 +60,7 @@ export class Checksum {
             }
             return new Checksum(BigInt("0x" + input), input);
         }
-        return new Checksum(input, input.toString(16).padStart(32, "0"));
+        return new Checksum(BigInt(input), input.toString(16).padStart(32, "0"));
     }
 
     /**
