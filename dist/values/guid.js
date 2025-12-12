@@ -2,16 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Guid = void 0;
 const uuid_1 = require("uuid");
+const uuid_2 = require("./uuid");
 class Guid {
     constructor(prefix, uuid) {
         if (prefix.includes('-')) {
             throw new Error('Prefix should not contain "-"');
         }
         this.prefix = prefix;
-        this.uuid = uuid;
+        this.uuid = uuid_2.UUID.parse(uuid);
     }
     toString() {
-        return this.prefix + '-' + this.uuid;
+        return this.prefix + '-' + this.uuid.toString();
     }
     static parse(guid) {
         const sectionedId = guid.split('-');
@@ -32,8 +33,11 @@ class Guid {
     get Prefix() {
         return this.prefix;
     }
+    get UUID() {
+        return this.uuid;
+    }
     equals(other) {
-        return ((this.prefix + '-' + this.uuid) === other.toString());
+        return ((this.prefix + '-' + this.uuid.toString()) === other.toString());
     }
 }
 exports.Guid = Guid;

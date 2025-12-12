@@ -1,11 +1,12 @@
 import { v7 as uuidv7 } from 'uuid';
+import { UUID } from './uuid';
 
 /** @internal */
 export class Guid {
     /** @internal */
     private readonly prefix: string;
     /** @internal */
-    private readonly uuid: string;
+    private readonly uuid: UUID;
 
     /** @internal */
     private constructor(prefix: string, uuid: string) {
@@ -14,12 +15,12 @@ export class Guid {
         }
 
         this.prefix = prefix;
-        this.uuid = uuid;
+        this.uuid = UUID.parse(uuid);
     }
 
     /** @internal */
     public toString(): string {
-        return this.prefix + '-' + this.uuid;
+        return this.prefix + '-' + this.uuid.toString();
     }
 
     /** @internal */
@@ -50,8 +51,12 @@ export class Guid {
         return this.prefix
     }
 
+    public get UUID(): UUID {
+        return this.uuid;
+    }
+
     /** @internal */
     public equals(other: Guid) {
-        return ((this.prefix + '-' + this.uuid) === other.toString());
+        return ((this.prefix + '-' + this.uuid.toString()) === other.toString());
     }
 }
