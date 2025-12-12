@@ -10,7 +10,7 @@ export class UUID {
 	 * @param value UUID 값 (문자열)
 	 * @internal
 	 */
-	private constructor(private readonly value: string) {}
+	private constructor(private readonly value: string) { }
 
 	/**
 	 * 주어진 문자열이 올바른 UUID 형식인지 확인한 후, UUID 인스턴스를 생성합니다.
@@ -25,6 +25,31 @@ export class UUID {
 			throw new Error('올바르지 않은 UUID 형식입니다.');
 		}
 		return new UUID(uuid);
+	}
+
+	/**
+	 * BigInt 값을 UUID로 변환합니다.
+	 * 
+	 * @param bigint UUID로 변환할 BigInt 값
+	 * @returns 생성된 UUID 인스턴스
+	 */
+	static fromBigInt(bigint: bigint): UUID {
+		const strVal = BigInt(bigint).toString(16);
+		return new UUID(
+			strVal.substring(0, 8) + '-' +
+			strVal.substring(8, 12) + '-' +
+			strVal.substring(12, 16) + '-' +
+			strVal.substring(16)
+		);
+	}
+
+	/**
+	 * UUID 값을 BigInt로 변환합니다.
+	 * 
+	 * @returns UUID의 BigInt 값
+	 */
+	toBigInt(): bigint {
+		return BigInt("0x" + this.value.split('-').join(''));
 	}
 
 	/**
