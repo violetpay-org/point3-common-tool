@@ -34,12 +34,13 @@ export class UUID {
 	 * @returns 생성된 UUID 인스턴스
 	 */
 	static fromBigInt(bigint: bigint): UUID {
-		const strVal = BigInt(bigint).toString(16);
+		const strVal = BigInt(bigint).toString(16).padStart(32, '0');
 		return new UUID(
 			strVal.substring(0, 8) + '-' +
 			strVal.substring(8, 12) + '-' +
 			strVal.substring(12, 16) + '-' +
-			strVal.substring(16)
+			strVal.substring(16, 20) + '-' +
+			strVal.substring(20)
 		);
 	}
 
@@ -49,7 +50,7 @@ export class UUID {
 	 * @returns UUID의 BigInt 값
 	 */
 	toBigInt(): bigint {
-		return BigInt("0x" + this.value.split('-').join(''));
+		return BigInt('0x' + this.value.split('-').join(''));
 	}
 
 	/**
