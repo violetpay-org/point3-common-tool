@@ -1,0 +1,13 @@
+export type GenericFunction<isPromise extends boolean> = (...args: any[]) => isPromise extends true ? Promise<any> : any;
+export declare const DoNothingAsync: () => Promise<void>;
+export declare const DoNothing: () => void;
+export declare function SilentlyRunAsync<F extends GenericFunction<true>>(func: F, shouldLog?: boolean): (...args: Parameters<F>) => Promise<void | Awaited<ReturnType<F>>>;
+export declare function SilentlyRun<F extends GenericFunction<false>>(func: F, shouldLog?: boolean): (...args: Parameters<F>) => void | ReturnType<F>;
+export declare function OptionallyRunAsync(): typeof DoNothingAsync;
+export declare function OptionallyRunAsync(func: undefined): typeof DoNothingAsync;
+export declare function OptionallyRunAsync<F extends GenericFunction<true>>(func: F): F;
+export declare function OptionallyRunAsync<F extends GenericFunction<true>>(func: F | undefined): F | typeof DoNothingAsync;
+export declare function OptionallyRun(): typeof DoNothing;
+export declare function OptionallyRun(func: undefined): typeof DoNothing;
+export declare function OptionallyRun<F extends GenericFunction<false>>(func: F): F;
+export declare function OptionallyRun<F extends GenericFunction<false>>(func: F | undefined): F | typeof DoNothing;

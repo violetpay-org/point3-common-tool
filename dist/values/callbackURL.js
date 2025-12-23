@@ -12,9 +12,8 @@ function createCallBackURL(url, query) {
                 searchParams.append(key, value.toString());
         });
     }
-    const queryString = searchParams.toString().replace(/\+/g, "%20");
-    const result = `${url}?${queryString}`;
-    if (queryString != '')
+    const result = `${url}?${searchParams.toString()}`;
+    if (searchParams.toString() != '')
         return result;
     return url;
 }

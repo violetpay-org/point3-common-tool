@@ -10,8 +10,7 @@ export type CallBackURL = string & { [CallBackURLBrand]: true };
 /** @internal */
 export function createCallBackURL(
     url: string,
-    query?: { [key: string]: string | number | boolean | undefined }): CallBackURL 
-{
+    query?: { [key: string]: string | number | boolean | undefined }): CallBackURL {
     if (!isCallBackURL(url)) throw new Error("Invalid URL");
     const searchParams = new URLSearchParams();
 
@@ -21,10 +20,8 @@ export function createCallBackURL(
         });
     }
 
-    const queryString = searchParams.toString().replace(/\+/g, "%20");
-
-    const result = `${url}?${queryString}` as CallBackURL;
-    if (queryString != '') return result;
+    const result = `${url}?${searchParams.toString()}` as CallBackURL;
+    if (searchParams.toString() != '') return result;
     return url as CallBackURL;
 }
 
