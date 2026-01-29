@@ -25,4 +25,5 @@ __exportStar(require("./roles"), exports);
 __exportStar(require("./checksum"), exports);
 __exportStar(require("./uuid"), exports);
 __exportStar(require("./metaString"), exports);
+__exportStar(require("./connectingInfo"), exports);
 //# sourceMappingURL=index.js.map

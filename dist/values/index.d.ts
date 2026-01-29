@@ -9,3 +9,4 @@ export * from "./roles";
 export * from "./checksum";
 export * from "./uuid";
 export * from "./metaString";
+export * from "./connectingInfo";
