@@ -4,3 +4,5 @@ export * as p3Testing from "./testing";
 export * as p3Event from "./event";
 export * as axiosAdapter from "./network-adapters/axios";
 export * as functions from "./functions";
+export * from "./doc-build/doc-sanitizer";
+
