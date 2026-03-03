@@ -11,3 +11,5 @@ export * from "./uuid";
 export * from "./metaString";
 export * from "./connectingInfo";
 export * from "./carrier";
+export * from "./birthdate";
+export * from "./gender";
