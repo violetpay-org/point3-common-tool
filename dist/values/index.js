@@ -27,4 +27,6 @@ __exportStar(require("./uuid"), exports);
 __exportStar(require("./metaString"), exports);
 __exportStar(require("./connectingInfo"), exports);
 __exportStar(require("./carrier"), exports);
+__exportStar(require("./birthdate"), exports);
+__exportStar(require("./gender"), exports);
 //# sourceMappingURL=index.js.map
