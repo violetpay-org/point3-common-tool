@@ -1,5 +1,5 @@
 {
-  "name": "point3-common-tool",
+  "name": "@point3/common-tool",
   "version": "1.0.37",
   "description": "포인트3 공유 코드베이스",
   "main": "dist/index.js",
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/violetpay-org/point3-common-tool.git"
+    "url": "git+https://git.point3.io/point3/point3-common-tool.git"
   },
   "author": "포인트3 개발팀",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/violetpay-org/point3-common-tool/issues"
+    "url": "https://git.point3.io/point3/point3-common-tool/-/issues"
   },
-  "homepage": "https://github.com/violetpay-org/point3-common-tool#readme",
+  "homepage": "https://git.point3.io/point3/point3-common-tool",
   "devDependencies": {
     "@types/figlet": "^1.5.8",
     "@types/jest": "^29.5.14",
