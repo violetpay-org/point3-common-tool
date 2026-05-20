@@ -36,12 +36,15 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.functions = exports.axiosAdapter = exports.p3Event = exports.p3Testing = exports.p3Values = exports.p3Loggers = void 0;
+exports.p3Auth = exports.p3Crypto = exports.functions = exports.axiosAdapter = exports.p3Event = exports.p3Testing = exports.p3Values = exports.p3Loggers = void 0;
 exports.p3Loggers = __importStar(require("./logger"));
 exports.p3Values = __importStar(require("./values"));
 exports.p3Testing = __importStar(require("./testing"));
 exports.p3Event = __importStar(require("./event"));
 exports.axiosAdapter = __importStar(require("./network-adapters/axios"));
 exports.functions = __importStar(require("./functions"));
+exports.p3Crypto = __importStar(require("./crypto"));
+exports.p3Auth = __importStar(require("./auth"));
+__exportStar(require("./auth"), exports);
 __exportStar(require("./doc-build/doc-sanitizer"), exports);
 //# sourceMappingURL=index.js.map

@@ -5,5 +5,6 @@ export * as p3Event from "./event";
 export * as axiosAdapter from "./network-adapters/axios";
 export * as functions from "./functions";
 export * as p3Crypto from "./crypto";
+export * as p3Auth from "./auth";
+export * from "./auth";
 export * from "./doc-build/doc-sanitizer";
-
