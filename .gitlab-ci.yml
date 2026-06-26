@@ -13,4 +13,4 @@ publish-npm:
   script:
     - npm ci
     - npm run build
-    - npm publish
+    - npm publish --registry=https://${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
